@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>八尺門的辯護人｜模擬法庭互動劇場</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Noto Serif TC", serif;
+            background-color: #1c1a19;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%2344382e' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E");
+            color: #e9e4dd;
+            line-height: 1.8;
+        }
+        header {
+            background: linear-gradient(#2b1f18, #1c1a19);
+            border-bottom: 3px solid #7c2323;
+            padding: 32px 20px;
+            text-align: center;
+        }
+        header h1 {
+            color: #d4b886;
+            font-size: 2.4rem;
+            letter-spacing: 4px;
+        }
+        header p {
+            color: #b8a898;
+            margin-top: 8px;
+            font-size: 1.05rem;
+        }
+        nav {
+            background-color: #292420;
+            text-align: center;
+            padding:14px;
+            border-bottom:1px solid #44382e;
+        }
+        nav a {
+            color:#d4b886;
+            text-decoration:none;
+            margin:0 16px;
+            font-size:1.05rem;
+        }
+        nav a:hover {
+            color:#dd5555;
+            transition: 0.3s;
+        }
+        .wrap {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .card {
+            background-color: #27221f;
+            border: 1px solid #44382e;
+            border-left: 5px solid #7c2323;
+            padding:32px;
+            border-radius: 4px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .intro-block {
+            margin-bottom:32px;
+        }
+        .intro-block h2 {
+            color:#d4b886;
+            margin-bottom:16px;
+        }
+        .scene-box {
+            min-height:480px;
+        }
+        .scene-text {
+            font-size:1.1rem;
+            margin-bottom:28px;
+        }
+        .status-bar {
+            margin-bottom: 20px;
+            padding: 10px 14px;
+            background: #201c1a;
+            border-radius: 4px;
+            color: #d4b886;
+        }
+        .choice-group {
+            display:flex;
+            gap:16px;
+            flex-wrap:wrap;
+            margin-top: 20px;
+        }
+        .choice-btn {
+            flex:1;
+            min-width:260px;
+            padding:16px 20px;
+            background-color:#382f29;
+            border:1px solid #7c2323;
+            color:#e9e4dd;
+            font-family: inherit;
+            font-size:1rem;
+            cursor:pointer;
+            border-radius:3px;
+            transition: all 0.3s ease;
+            line-height: 1.6;
+        }
+        .choice-btn:hover {
+            background-color:#7c2323;
+            color:#fff;
+            transform: translateY(-2px);
+        }
+        .ending-text {
+            color:#d4b886;
+            font-size:1.25rem;
+            margin:24px 0;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .restart-btn {
+            padding:12px 28px;
+            background:#7c2323;
+            color:white;
+            border:none;
+            font-family:inherit;
+            cursor:pointer;
+            font-size:1rem;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+        .restart-btn:hover {
+            background:#a02c2c;
+        }
+        .reflection {
+            margin-top:40px;
+            padding:28px;
+            background:#201c1a;
+            border:1px solid #44382e;
+        }
+        .reflection h3 {
+            color:#d4b886;
+            margin-bottom:16px;
+            font-size:1.3rem;
+        }
+        footer {
+            margin-top:50px;
+            text-align:center;
+            padding:24px;
+            color:#887e74;
+            border-top:1px solid #44382e;
+            font-size:0.95rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>八尺門的辯護人</h1>
+        <p>模擬法庭互動劇場｜你手握法槌，抉擇人性與正義</p>
+    </header>
+    <nav>
+        <a href="#about">關於本書</a>
+        <a href="#court">進入法庭審判</a>
+        <a href="#think">閱讀核心反思</a>
+    </nav>
+    <div class="wrap">
+        <section id="about" class="card intro-block">
+            <h2>關於《八尺門的辯護人》</h2>
+            <p>《八尺門的辯護人》探討司法裡權力、利益、人情與正義之間拉扯，那道八尺門，就是法律與人性之間的界線。</p>
+            <p style="margin-top:12px;">本互動故事採用原創案件，沒有照搬原著劇情。你擔任承審法官，一共八個階段的連續抉擇，每一次小小的讓步或堅持，都會慢慢改變走向，最後匯入不同結局。</p>
+        </section>
+
+        <section id="court" class="card scene-box">
+            <div id="storyArea"></div>
+        </section>
+
+        <section id="think" class="reflection">
+            <h3>閱讀核心反思</h3>
+            <p>正義很少是一次壯烈的選擇，往往是一連串抉擇堆積出來。每一次為了方便、人情或是利益而退讓，都可能慢慢腐蝕司法。《八尺門的辯護人》想提醒我們，灰色地帶才是考驗真正開始的地方。</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>本網站為《八尺門的辯護人》推廣創作；劇情原創，僅參考原著精神。</p>
+    </footer>
+
+<script>
+let justiceScore = 0;
+const storyArea = document.getElementById("storyArea");
+
+function setStatus() {
+    return `<div class="status-bar">正義值：${justiceScore}</div>`;
+}
+
+// 重置
+function restart() {
+    justiceScore = 0;
+    step1();
+}
+
+// Step 1：開庭前，富商渡假村開發案
+function step1() {
+    storyArea.innerHTML = setStatus() + `
+    <div class="scene-text">
+    【階段 1｜案件受理】<br><br>
+    地方富商的開發公司計畫興建大型渡假村，徵收沿岸土地。有村民指控公司非法強拆，衝突中一名村民受傷；控方主張是公司員工蓄意傷人，辯方則說是村民滋事引發意外。開庭前，地方首長私下約你吃飯，暗示這個開發案可以帶動地方經濟，希望「審理時多考量整體發展」。同時，你的舊同學正是富商的律師，傳訊息約你敘舊。
+    </div>
+    <div class="choice-group">
+        <button class="choice-btn" onclick="step1A()">拒絕飯局，並且迴避私下接觸，依正常程序排期</button>
+        <button class="choice-btn" onclick="step1B()">婉拒飯局，但願意之後聽聽雙方的說法</button>
+        <button class="choice-btn" onclick="step1C()">赴約，先聽聽他們的說法</button>
+    </div>
+    `;
+}
+function step1A(){ justiceScore += 10; step2(); }
+function step1B(){ justiceScore += 3; step2(); }
+function step1C(){ justiceScore -= 6; step2(); }
+
+// Step 2：庭前，證據清單
+function step2() {
+    storyArea.innerHTML = setStatus() + `
+    <div class="scene-text">
+    【階段 2｜庭前證據】<br><br>
+    準備開庭，檢方提交驗傷報告、數名村民證詞。辯方則提交現場錄影，聲稱衝突由村民先動手。但是書記官提醒你，錄影檔好像有剪接痕跡，只是還沒有鑑定。
+    </div>
+    <div class="choice-group">
+        <button class="choice-btn" onclick="step2A()">立刻裁定送交鑑定，確認影片真偽</button>
+        <button class="choice-btn" onclick="step2B()">先照常開庭，鑑定可以之後補</button>
+        <button class="choice-btn" onclick="step2C()">暫且忽略疑點，先讓庭審流程走下去</button>
+    </div>
+    `;
+}
+function step2A(){ justiceScore += 12; step3(); }
+function step2B(){ justiceScore += 2; step3(); }
+function step2C(){ justiceScore -= 8; step3(); }
+
+// Step 3：第一位證人出庭
+function step3() {
+    storyArea.innerHTML = setStatus() + `
+    <div class="scene-text">
+    【階段 3｜第一位證人】<br><br>
+    受傷村民的家屬出庭，情緒激動，描述當天強拆的恐懼。辯護律師則質疑證人有偏見，企圖把描繪成蓄意阻撓開發。庭上氣氛逐漸升溫，旁聽席也有支持者互相叫囂。
+    </div>
+    <div class="choice-group">
+        <button class="choice-btn" onclick="step3A()">維持法庭秩序，給予證人合理陳述空間，同時允許合法交叉詰問</button>
+        <button class="choice-btn" onclick="step3B()">稍微壓低證人發言時間，避免情緒失控</button>
+        <button class="choice-btn" onclick="step3C()">偏向壓抑村民一方，避免輿論騷動</button>
+    </div>
+    `;
+}
+function step3A(){ justiceScore += 10; step4(); }
+function step3B(){ justiceScore += 1; step4(); }
+function step3C(){ justiceScore -= 7; step4(); }
+
+// Step 4：辯方提出交易
+function step4() {
+    storyArea.innerHTML = setStatus() + `
+    <div class="scene-text">
+    【階段 4｜辯方提出方案】<br><br>
+    休庭期間，辯方私下透過管道表示，如果控方願意降低指控，公司願意賠償一筆可觀金額，並承諾給村民額外補償。但如果認罪協商成立，部分關於非法徵地的細節可能不會被調查。
+    </div>
+    <div class="choice-group">
+        <button class="choice-btn" onclick="step4A()">要求協商必須公開，不能掩蓋違法事實，交由當事人自主決定</button>
+        <button class="choice-btn" onclick="step4B()">容許協商，但保留繼續追查非法徵地部分</button>
+        <button class="choice-btn" onclick="step4C()">促成私下和解，快速結案</button>
+    </div>
+    `;
+}
+function step4A(){ justiceScore += 11; step5(); }
+function step4B(){ justiceScore += 4; step5(); }
+function step4C(){ justiceScore -= 9; step5(); }
+
+// Step 5：爆出新證人
+function step5() {
+    storyArea.innerHTML = setStatus() + `
+    <div class="scene-text">
+    【階段 5｜新證人出現】<br><br>
+    突然有一名前公司員工聯絡法庭，聲稱握有內部備忘錄，證明公司早就計畫以強硬手段驅離村民。但這名員工害怕遭到報復，不願意公開出庭。
+    </div>
+    <div class="choice-group">
+        <button class="choice-btn" onclick="step5A()">安排保護措施，傳喚證人出庭，保全證據</button>
+        <button class="choice-btn" onclick="step5B()">收下文件，但是暫不強制出庭</button>
+        <button class="choice-btn" onclick="step5C()">拒絕接納，認為證人不願出庭就不足採信</button>
+    </div>
+    `;
+}
+function step5A(){ justiceScore += 12; step6(); }
+function step5B(){ justiceScore += 3; step6(); }
+function step5C(){ justiceScore -= 6; step6(); }
+
+// Step 6：輿論壓力
+function step6() {
+    storyArea.innerHTML = setStatus() + `
+    <div class="scene-text">
+    【階段 6｜輿論壓力】<br><br>
+    新聞開始炒作，一部分媒體捧開發案帶來就業，另一邊則聲援村民。你的個人資料被網路翻出，有人威脅施壓。辦公室收到匿名包裹，裡面是禮品。
+    </div>
+    <div class="scene-text">
+    </div>
+    <div class="choice-group">
+        <button class="choice-btn" onclick="step6A()">報備，退回禮品，不受輿論影響，依證據審理</button>
+        <button class="choice-btn" onclick="step6B()">低調處理，不回應輿論，繼續審理</button>
+        <button class="choice-btn" onclick="step6C()">順應較有權勢一方，平息風波</button>
+    </div>
+    `;
+}
+function step6A(){ justiceScore += 10; step7(); }
+function step6B(){ justiceScore += 2; step7(); }
+function step6C(){ justiceScore -= 10; step7(); }
+
+// Step 7：證據鑑定結果
+function step7() {
+    storyArea.innerHTML = setStatus() + `
+    <div class="scene-text">
+    【階段 7｜鑑定結果】<br><br>
+    如果之前送鑑定，報告指出影片確實有剪輯；若沒有，則辯方繼續主張影片有效。同時，檢方也提出，就算傷害是衝突引發，非法徵地本身也有違法嫌疑。這時，政商人士再度傳來訊息，希望「大事化小」。
+    </div>
+    <div class="choice-group">
+        <button class="choice-btn" onclick="step7A()">完整納入鑑定與相關違法事證，一併審理</button>
+        <button class="choice-btn" onclick="step7B()">只審理傷害案，徵地部分另案處理</button>
+        <button class="choice-btn" onclick="step7C()">限縮審理範圍，減輕對開發方的壓力</button>
+    </div>
+    `;
+}
+function step7A(){ justiceScore += 11; step8(); }
+function step7B(){ justiceScore += 2; step8(); }
+function step7C(){ justiceScore -= 8; step8(); }
+
+// Step 8：宣判前最後抉擇
+function step8() {
+    storyArea.innerHTML = setStatus() + `
+    <div class="scene-text">
+    【階段 8｜宣判前夕】<br><br>
+    所有證據、辯論大致完畢。你要決定最後判決的方向。即使前面有過動搖，此刻仍是最後一道門。
+    </div>
+    <div class="choice-group">
+        <button class="choice-btn" onclick="endingA()">依證據，做出公正判決，追究應負責任</button>
+        <button class="choice-btn" onclick="endingB()">取一個折衷判決，平衡雙方</button>
+        <button class="choice-btn" onclick="endingC()">偏向權勢一方，給予輕判</button>
+    </div>
+    `;
+}
+
+// 結局分支，搭配累計分數
+function endingA(){ justiceScore += 8; renderEnding(); }
+function endingB(){ justiceScore += 1; renderEnding(); }
+function endingC(){ justiceScore -= 12; renderEnding(); }
+
+function renderEnding() {
+    let endingText = "";
+    if (justiceScore >= 50) {
+        endingText = `
+        <div class="scene-text">
+        【結局：守住程序正義】<br><br>
+        你一路在每個關卡之中，儘管也面對壓力，最後仍以證據為本，讓真相有機會被看見。富商公司的違法行為受到應有審查，受害者得到公道。代價可能是得罪地方權勢，但你守住了法庭的底線。
+        </div>
+        <div class="ending-text">正義，需要一次次堅持。</div>
+        `;
+    } else if (justiceScore >= 20) {
+        endingText = `
+        <div class="scene-text">
+        【結局：折衷之間】<br><br>
+        你沒有完全出賣正義，但也在多處做了讓步。案件最後獲得部分和解，受害者拿到補償，卻不是所有違法細節都被追究。這是司法常見的灰色，沒有大敗，也沒有完全的圓滿。
+        </div>
+        <div class="ending-text">妥協一旦開始，邊界便容易模糊。</div>
+        `;
+    } else if (justiceScore >= 0) {
+        endingText = `
+        <div class="scene-text">
+        【結局：遺憾的平衡】<br><br>
+        在權力與輿論拉扯之下，判決勉強平息風波。表面上事情落幕，但部分真相被掩蓋。你沒有明目張膽枉法，卻錯過了讓正義完全實現的機會。
+        </div>
+        <div class="ending-text">有些遺憾，來自一次次放鬆底線。</div>
+        `;
+    } else {
+        endingText = `
+        <div class="scene-text">
+        【結局：沉淪的法庭】<br><br>
+        多次選擇向利益與權力靠攏，最後判決偏袒富商。短期內你換來人脈與方便，但後續若證據曝光，可能引發司法風暴。一旦法庭成為權力工具，受害者就失去最後一道防線。
+        </div>
+        <div class="ending-text">正義的崩塌，往往始於一次又一次的退讓。</div>
+        `;
+    }
+    storyArea.innerHTML = setStatus() + endingText + `<br><button class="restart-btn" onclick="restart()">重返法庭，重新審理</button>`;
+}
+
+// 頁面載入自動開始
+restart();
+</script>
+</body>
+</html>
